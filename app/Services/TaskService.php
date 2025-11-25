@@ -62,9 +62,7 @@ class TaskService
         $projectId = $task->project_id;
         $deleted = $this->taskRepository->delete($task);
 
-        if ($deleted) {
-            $this->reorderTaskPriorities($projectId);
-        }
+        $this->reorderTaskPriorities($projectId);
 
         return $deleted;
     }
@@ -72,18 +70,11 @@ class TaskService
     /**
      * Reorder tasks based on new priority values
      *
-     * @param array $tasks
      * @return bool
      */
-    public function reorderTasks(array $tasks): bool
+    public function reorderTasks(): bool
     {
-        foreach ($tasks as $taskData) {
-            $this->taskRepository->updatePriority(
-                $taskData['id'],
-                $taskData['priority']
-            );
-        }
-
+        $this->reorderTaskPriorities(null);
         return true;
     }
 
@@ -99,10 +90,7 @@ class TaskService
 
         foreach ($tasks as $index => $task) {
             $newPriority = $index + 1;
-
-            if ($task->priority !== $newPriority) {
-                $this->taskRepository->updatePriority($task->id, $newPriority);
-            }
+            $this->taskRepository->updatePriority($task->id, $newPriority);
         }
     }
 }

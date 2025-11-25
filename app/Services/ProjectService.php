@@ -26,17 +26,6 @@ class ProjectService
     }
 
     /**
-     * Get a single project by ID
-     *
-     * @param int $id
-     * @return Project|null
-     */
-    public function getProject(int $id): ?Project
-    {
-        return $this->projectRepository->find($id);
-    }
-
-    /**
      * Create a new project
      *
      * @param array $data

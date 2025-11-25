@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReorderTaskRequest;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
@@ -124,12 +123,11 @@ class TaskController extends Controller
     /**
      * Reorder tasks via drag and drop
      *
-     * @param ReorderTaskRequest $request
      * @return JsonResponse
      */
-    public function reorder(ReorderTaskRequest $request): JsonResponse
+    public function reorder(): JsonResponse
     {
-        $this->taskService->reorderTasks($request->validated()['tasks']);
+        $this->taskService->reorderTasks();
 
         return response()->json(['success' => true]);
     }

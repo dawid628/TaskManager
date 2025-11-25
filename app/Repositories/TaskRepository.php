@@ -92,7 +92,7 @@ class TaskRepository
         return Task::when($projectId, function ($query) use ($projectId) {
             return $query->where('project_id', $projectId);
         })
-            ->orderBy('priority')
+            ->orderBy('priority', 'asc')
             ->get();
     }
 }
