@@ -21,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Project::observe(ProjectObserver::class);
+        Project::observe(ProjectObserver::class); // for keep SOLID rules
     }
 }
